@@ -1,2 +1,2 @@
 # CPP-Lab
-My C++ experimental labratory
+My C++ experimental laboratory
