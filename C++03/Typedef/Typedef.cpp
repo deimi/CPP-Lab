@@ -15,12 +15,12 @@ class CArrayFive2 : public array<int,5> {
 
 int main() {
 
-    TArrayFive tArrayFive = {0};
-    TArrayFive2 tArrayFive2 = {0};
-    array<int,5> arrayFive = {0};
+    TArrayFive tArrayFive;
+    TArrayFive2 tArrayFive2;
+    array<int,5> arrayFive;
     CArrayFive cArrayFive;
     CArrayFive2 cArrayFive2;    
-    TArraySix tArraySix = {0};
+    TArraySix tArraySix;
 
     //tArrayFive = tArraySix;       // Compile error - no operator =
 
@@ -30,9 +30,17 @@ int main() {
 
     tArrayFive = arrayFive;
 
-    //cArrayFive = arrayFive;       // Compile error - no operator = 
+    //cArrayFive = tArrayFive;       // Compile error - no operator = 
+    
+    //cArrayFive = static_cast<CArrayFive>(tArrayFive);       // Compile error - no suitable user defined conversion
 
     //cArrayFive = cArrayFive2;       // Compile error - no operator =
+
+
+    // Problem: It still works with references!!!
+    CArrayFive* ptrCArrayFive;
+    TArrayFive* ptrTArrayFive;
+    ptrCArrayFive = static_cast<CArrayFive*>(ptrTArrayFive); 
 
     return 0;
 }
