@@ -18,15 +18,15 @@ constexpr std::array<T, dest_size> Downsize(std::array<T, source_size> other, Ts
 }
 
 int main(){
-    // without constexpr, program size 48 assembler instructions (clang gobolt.org)
-    // with constexpr, program size 455 assembler instructions (clang gobolt.org)        
+    // with constexpr, program size 48 assembler instructions (clang gobolt.org)
+    // without constexpr, program size 455 assembler instructions (clang gobolt.org)        
     // constexpr std::array<char, 5> test5{'a','s','d','f','q'};
     // constexpr std::array<char, 4> test4 = DownsizeByOne<char,4>(test5);
     // constexpr std::array<char, 3> test3 = DownsizeByOne<char,3>(test4);
     // constexpr std::array<char, 2> test2 = DownsizeByOne<char,2>(test3);
 
-    // without constexpr, program size 48 assembler instructions (clang gobolt.org)
-    // with constexpr, program size 474 assembler instructions (clang gobolt.org)        
+    // with constexpr, program size 48 assembler instructions (clang gobolt.org)
+    // without constexpr, program size 474 assembler instructions (clang gobolt.org)        
     constexpr std::array<char, 5> test5{'a','s','d','f','q'};
     constexpr std::array<char, 4> test4 = Downsize<char,4,5>(test5);
     constexpr std::array<char, 3> test3 = Downsize<char,3,5>(test5);
