@@ -2,7 +2,7 @@
 #include <iostream>
 
 template<typename T, int dest_size, int current_pos=(dest_size-1), typename... Ts>
-constexpr std::array<T, dest_size> DownsizeByOne(std::array<T, dest_size+1> other, Ts... rest){
+constexpr std::array<T, dest_size> DownsizeByOne(const std::array<T, dest_size+1> &other, const Ts&... rest){
     if constexpr(current_pos>0){
         return DownsizeByOne<T, dest_size, current_pos-1, Ts...>(other, other[current_pos], rest...);
     }
@@ -10,7 +10,7 @@ constexpr std::array<T, dest_size> DownsizeByOne(std::array<T, dest_size+1> othe
 }
 
 template<typename T, int dest_size, int source_size, int current_pos=(dest_size-1), typename... Ts>
-constexpr std::array<T, dest_size> Downsize(std::array<T, source_size> other, Ts... rest){
+constexpr std::array<T, dest_size> Downsize(const std::array<T, source_size> &other, const Ts&... rest){
     static_assert(dest_size<source_size, "Destination not smaller than source");
     if constexpr(current_pos>0){
         return Downsize<T, dest_size, source_size, current_pos-1, Ts...>(other, other[current_pos], rest...);
@@ -20,14 +20,14 @@ constexpr std::array<T, dest_size> Downsize(std::array<T, source_size> other, Ts
 
 int main(){
     // with constexpr, program size 48 assembler instructions (clang gobolt.org)
-    // without constexpr, program size 455 assembler instructions (clang gobolt.org)        
+    // without constexpr, program size 342 assembler instructions (clang gobolt.org)        
     // constexpr std::array<char, 5> test5{'a','s','d','f','q'};
     // constexpr std::array<char, 4> test4 = DownsizeByOne<char,4>(test5);
     // constexpr std::array<char, 3> test3 = DownsizeByOne<char,3>(test4);
     // constexpr std::array<char, 2> test2 = DownsizeByOne<char,2>(test3);
 
     // with constexpr, program size 48 assembler instructions (clang gobolt.org)
-    // without constexpr, program size 474 assembler instructions (clang gobolt.org)        
+    // without constexpr, program size 302 assembler instructions (clang gobolt.org)        
     constexpr std::array<char, 5> test5{'a','s','d','f','q'};
     constexpr std::array<char, 4> test4 = Downsize<char,4,5>(test5);
     constexpr std::array<char, 3> test3 = Downsize<char,3,5>(test5);
