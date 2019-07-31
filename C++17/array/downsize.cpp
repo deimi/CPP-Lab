@@ -18,6 +18,13 @@ constexpr std::array<T, dest_size> Downsize(const std::array<T, source_size> &ot
     return std::array<T, dest_size>{other[current_pos], rest...};
 }
 
+// using this method instead the special one, the program size is 393 assambler instructions without constexpr
+// => this one needs more size than the seperate implementation
+// template<typename T, int dest_size>
+// constexpr std::array<T, dest_size> DownsizeByOne(const std::array<T, dest_size+1> &other){
+//     return Downsize<T, dest_size, dest_size+1>(other);
+// }
+
 int main(){
     // with constexpr, program size 48 assembler instructions (clang gobolt.org)
     // without constexpr, program size 342 assembler instructions (clang gobolt.org)        
