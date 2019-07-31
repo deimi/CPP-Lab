@@ -1,3 +1,6 @@
+// Copyright (c) 2019 Matthias Deimbacher
+// Licensed under MIT License
+
 #include <string>
 #include <iostream>
 

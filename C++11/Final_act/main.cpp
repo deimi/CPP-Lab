@@ -1,3 +1,6 @@
+// Copyright (c) 2019 Matthias Deimbacher
+// Licensed under MIT License
+
 // Core Guideline
 // E.19: Use a final_action object to express cleanup if no suitable resource handle is available
 //
