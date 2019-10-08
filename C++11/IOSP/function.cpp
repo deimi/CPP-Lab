@@ -11,6 +11,8 @@ std::string foo_big(){
 }
 
 void bar(int i, const std::function< std::string() >& lambda_small, const std::function< std::string() >& lambda_big){
+// template<typename F, typename F2>
+// void bar(int i, const F& lambda_small, const F2& lambda_big){
     if(i<0)
         std::cout << lambda_small() << std::endl;
     else
