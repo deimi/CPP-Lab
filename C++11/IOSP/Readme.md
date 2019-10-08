@@ -1,0 +1,1 @@
+Integration Operation Segregation Principle with modern C++
